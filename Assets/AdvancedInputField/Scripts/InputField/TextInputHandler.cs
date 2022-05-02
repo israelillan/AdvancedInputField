@@ -3,9 +3,7 @@
 
 using UnityEngine;
 using UnityEngine.EventSystems;
-#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
-#endif
 
 namespace AdvancedInputFieldPlugin
 {
@@ -224,11 +222,7 @@ namespace AdvancedInputFieldPlugin
 		{
 			if(actionBar != null)
 			{
-#if ENABLE_INPUT_SYSTEM
 				if(Mouse.current.leftButton.wasReleasedThisFrame) //Left mouse button was clicked
-#else
-				if(Input.GetMouseButtonUp(0)) //Left mouse button was clicked
-#endif
 				{
 					if(lastTapTime > 0 && Time.realtimeSinceStartup - lastTapTime <= Settings.DoubleTapThreshold)
 					{
@@ -248,11 +242,7 @@ namespace AdvancedInputFieldPlugin
 					lastTapTime = Time.realtimeSinceStartup;
 					TextNavigator.HideActionBar();
 				}
-#if ENABLE_INPUT_SYSTEM
 				else if(Mouse.current.rightButton.wasReleasedThisFrame) //Right mouse button was clicked
-#else
-				else if(Input.GetMouseButtonUp(1)) //Right mouse button was clicked
-#endif
 				{
 					if(Engine.HasSelection)
 					{
